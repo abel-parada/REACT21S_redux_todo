@@ -1,9 +1,16 @@
 import React from "react";
 
-import { notes } from "../../notes";
+import {useSelector} from 'react-redux'
+
+// import { notes } from "../../notes";
+
 import classes from "./TodoList.module.css";
 
 const TodoList = () => {
+
+const notes = useSelector(state => state.notes);
+// const abelUnderstandThis = useSelector(state => state.understand);
+
   const removeHandler = (id) => {
     console.log(id, "was clicked");
   };
@@ -24,7 +31,7 @@ const TodoList = () => {
             key={note.id}
           >
             <h2>
-              {note.id}. {note.title}
+             {note.title}
             </h2>
             <p>{note.task}</p>
             <span
