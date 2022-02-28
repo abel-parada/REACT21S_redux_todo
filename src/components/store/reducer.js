@@ -45,9 +45,27 @@ const reducer = (state = initialState, action) => {
           }
         ]
       }
-      default:
-      return state;
-  }
-}
-
+    case actionTypes.REMOVE_TODO:
+      const newTodos= [...state.notes];
+            newTodos.splice(
+                newTodos.findIndex(
+                    (item)=> item.id === action.payload),
+                    1
+            );
+            return {
+                notes:newTodos
+            };
+            case actionTypes.DONE_TODO:
+              const crossIt = state.notes.map((item) =>{
+                return item.id === action.payload ? {...item,done:!item.done} : {...item};
+              });
+              return {
+                ...state,
+                notes:crossIt,
+              };
+              default:
+              return state;
+            }
+          }
+          
 export default reducer;
